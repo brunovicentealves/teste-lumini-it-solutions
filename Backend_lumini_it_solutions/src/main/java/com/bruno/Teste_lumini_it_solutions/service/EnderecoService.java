@@ -1,6 +1,8 @@
 package com.bruno.Teste_lumini_it_solutions.service;
 
+import com.bruno.Teste_lumini_it_solutions.model.Empresa;
 import com.bruno.Teste_lumini_it_solutions.model.Endereco;
+import com.bruno.Teste_lumini_it_solutions.repository.EmpresaRepository;
 import com.bruno.Teste_lumini_it_solutions.repository.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,16 +13,15 @@ import java.util.Optional;
 public class EnderecoService {
 
     private EnderecoRepository enderecoRepository;
+    private EmpresaRepository empresaRepository;
 
-    @Autowired
-    public EnderecoService(EnderecoRepository enderecoRepository) {
+    public EnderecoService(EnderecoRepository enderecoRepository, EmpresaRepository empresaRepository) {
         this.enderecoRepository = enderecoRepository;
+        this.empresaRepository = empresaRepository;
     }
 
-    public Endereco buscarEnderecoCnpj(Integer id ){
+    public Empresa buscarEnderecoCnpj(String cnpj ){
 
-        return  enderecoRepository.findById(id).get();
-
-
+            return  empresaRepository.findByCnpj(cnpj);
     }
 }

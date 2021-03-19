@@ -27,7 +27,6 @@ public class EmpresaController {
   @ResponseBody
     public ResponseEntity getEmpresaByCnpj(@PathVariable  String cnpj){
         Empresa empresa = empresaService.buscarCnpj(cnpj);
-
             return ResponseEntity.ok().body(empresa);
 
 
