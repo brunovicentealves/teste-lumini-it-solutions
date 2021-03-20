@@ -11,6 +11,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/media")
+@CrossOrigin("http://localhost:4200")
 public class ControllerMedia {
 
 
@@ -23,10 +24,9 @@ public class ControllerMedia {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity save( @RequestBody @Valid Media media){
+    public ResponseEntity save( @RequestBody Media media){
         Media mediafinal = serviceMedia.CalcularMedia(media);
-            return ResponseEntity.ok(mediafinal);
+        return ResponseEntity.ok(mediafinal);
     }
-
 
 }
