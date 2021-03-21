@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Lunini It</a>
 </nav>
@@ -9,15 +11,15 @@
 
     <div class="col-md-2">
       <label >valor 1 </label>
-      <input type="text" class="form-control" formControlName="valorUm"/>
+      <input type="text" class="form-control" formControlName="valorUm" required minlength="1"  maxlength="3" />
     </div>
     <div class="col-md-2">
       <label >valor 2</label>
-      <input type="text" class="form-control" formControlName="valorDois"/>
+      <input type="text" class="form-control" formControlName="valorDois" required minlength="1"  maxlength="3"  />
     </div>
     <div class="col-md-2">
       <hr>
-      <button type="submit"   class="btn btn-primary">Calcular Média</button>
+      <button type="submit" [disabled]="!form.valid"  class="btn btn-primary">Calcular Média</button>
     </div>
   </div>
   <hr>
@@ -36,16 +38,27 @@
 <hr>
 <div class="container mt-4">
   <h3> Busca de Endereço por Cnpj</h3>
+  <h3> {{mensagem}}</h3>
   <hr>
   <form [formGroup]="form1" (ngSubmit)="submit2()">
   <div class="row">
     <div class="col-md-4">
       <label >Cnpj </label>
-      <input type="text" class="form-control" formControlName="cnpj"/>
+      <input type="text" class="form-control" formControlName="cnpj" required minlength="4"  maxlength="14" pattern="[0-9.]*"/>
     </div>
     <div class="col-md-2">
       <hr>
-      <button type="submit"   class="btn btn-primary">Buscar</button>
+      <button type="submit" [disabled]="!form1.valid"  class="btn btn-primary">Buscar</button>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="list-group">
+        <li *ngFor="let enderecos of  endereco" class="list-group-item d-flex justify-content-between align-items-center">
+         Nome Rua: {{enderecos.rua}} Numero: {{enderecos.numero}} Bairro: {{enderecos.bairro}} Estado: {{enderecos.estado}} Cep: {{enderecos.cep}}
+        </li>
+      </ul>
     </div>
   </div>
 </form>

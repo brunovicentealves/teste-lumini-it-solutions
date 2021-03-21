@@ -1,6 +1,5 @@
-export class endereco {
+export class Endereco {
    
-    cnpj ?: number;
     id ?: number;
     rua ?: string;
     bairro?: string;
