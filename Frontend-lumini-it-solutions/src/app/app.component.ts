@@ -14,7 +14,7 @@ export class AppComponent {
 
   media: Media[] = [];
   endereco: Endereco[] = [];
-  mensagem : string = "";
+
  
   form: FormGroup = new FormGroup({
     valorUm : new FormControl('',[Validators.required,Validators.minLength(1),Validators.maxLength(3),Validators.pattern('[0-9.]*')]),
@@ -47,15 +47,10 @@ export class AppComponent {
   this.service.EnderecoCnpj(this.form1.value.cnpj)
     .subscribe(endereco=>{
       
-        this.mensagem = "Não encontrado"
-      
         this.endereco.push(endereco)
       
       this.form1.reset
      
-    },err =>{
-
-      console.log(err)
     })
     
 
